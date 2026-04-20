@@ -5,6 +5,7 @@ import com.itesm.domain.repository.UserRepository;
 import com.itesm.infrastructure.mapper.UserMapper;
 import com.itesm.infrastructure.persistence.entity.UserEntity;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.UUID;
 /**
  * UserRepositoryImpl
  */
+@ApplicationScoped
 public class UserRepositoryImpl implements UserRepository, PanacheRepositoryBase<UserEntity, UUID> {
     @Override
     @Transactional
@@ -40,5 +42,10 @@ public class UserRepositoryImpl implements UserRepository, PanacheRepositoryBase
     @Transactional
     public void delete(UUID id) {
         deleteById(id);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return find("email", email).firstResultOptional().map(UserMapper::toDomain);
     }
 }

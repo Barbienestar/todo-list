@@ -1,14 +1,19 @@
 package com.itesm.infrastructure.persistence.entity;
 
-import com.aayushatharva.brotli4j.common.annotations.Local;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -16,6 +21,9 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "todos")
+@NamedEntityGraph(name = "todo.full",
+    attributeNodes = { @NamedAttributeNode("owner")
+                       , @NamedAttributeNode("comments") })
 public class TodoEntity {
     @Id private UUID id;
     @Column(nullable = false, length = 150) private String title;
@@ -27,6 +35,9 @@ public class TodoEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     private UserEntity owner;
+
+    @OneToMany(mappedBy = "todo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CommentEntity> comments = new ArrayList<>();
 
     public TodoEntity() {
     }
@@ -94,5 +105,13 @@ public class TodoEntity {
 
     public void setOwner(UserEntity owner) {
         this.owner = owner;
+    }
+
+    public List<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentEntity> comments) {
+        this.comments = comments;
     }
 }

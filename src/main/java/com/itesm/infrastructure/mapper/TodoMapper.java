@@ -1,7 +1,13 @@
 package com.itesm.infrastructure.mapper;
 
+import com.itesm.domain.models.Comment;
 import com.itesm.domain.models.Todo;
+import com.itesm.domain.models.TodoWithData;
 import com.itesm.infrastructure.persistence.entity.TodoEntity;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * TodoMapper
@@ -26,5 +32,13 @@ public class TodoMapper {
         entity.setDescription(todo.getDescription());
         entity.setCompleted(todo.isCompleted());
         return entity;
+    }
+
+    public static TodoWithData toFullView(TodoEntity t) {
+        List<Comment> comments =
+            t.getComments().stream().map(CommentMapper::toDomain).collect(Collectors.toList());
+
+        return new TodoWithData(t.getId(), t.getTitle(), t.getDescription(), t.isCompleted(),
+            t.getOwner().getId(), comments, Collections.emptyList());
     }
 }
