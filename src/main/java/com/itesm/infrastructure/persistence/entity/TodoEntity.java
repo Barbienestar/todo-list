@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.NamedEntityGraph;
@@ -13,7 +15,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -39,79 +43,57 @@ public class TodoEntity {
     @OneToMany(mappedBy = "todo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CommentEntity> comments = new ArrayList<>();
 
-    public TodoEntity() {
-    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "todo_category", joinColumns = @JoinColumn(name = "todo_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<CategoryEntity> categories = new HashSet<>();
 
-    public TodoEntity(
-        UUID id, String title, String description, boolean completed, UserEntity owner) {
+    public TodoEntity() {}
+
+    public TodoEntity(UUID id, String title, String description, boolean completed,
+        UserEntity owner, Set<CategoryEntity> categories, List<CommentEntity> comments) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.completed = completed;
         this.owner = owner;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public UserEntity getOwner() {
-        return owner;
-    }
-
-    public void setOwner(UserEntity owner) {
-        this.owner = owner;
-    }
-
-    public List<CommentEntity> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<CommentEntity> comments) {
+        this.categories = categories;
         this.comments = comments;
     }
+
+    public UUID getId() { return id; }
+
+    public void setId(UUID id) { this.id = id; }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
+
+    public boolean isCompleted() { return completed; }
+
+    public void setCompleted(boolean completed) { this.completed = completed; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
+    public UserEntity getOwner() { return owner; }
+
+    public void setOwner(UserEntity owner) { this.owner = owner; }
+
+    public List<CommentEntity> getComments() { return comments; }
+
+    public void setComments(List<CommentEntity> comments) { this.comments = comments; }
+
+    public Set<CategoryEntity> getCategories() { return categories; }
+
+    public void setCategories(Set<CategoryEntity> categories) { this.categories = categories; }
 }

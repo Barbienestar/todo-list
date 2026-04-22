@@ -9,22 +9,13 @@ public class Comment {
         this.content = content;
     }
 
-    public Comment() {
-    }
+    public Comment() {}
 
-    public String getUserName() {
-        return userName;
-    }
+    public String getUserName() { return userName; }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    public void setUserName(String userName) { this.userName = userName; }
 
-    public String getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+    public void setContent(String content) { this.content = content; }
 }

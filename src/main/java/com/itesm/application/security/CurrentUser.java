@@ -19,27 +19,15 @@ public class CurrentUser {
         this.fullName = fullName;
     }
 
-    public boolean hasRole(String role) {
-        return this.role.equals(role);
-    }
+    public boolean hasRole(String role) { return this.role.equals(role); }
 
-    public UUID getUserId() {
-        return userId;
-    }
+    public UUID getUserId() { return userId; }
 
-    public String getFirebaseUuid() {
-        return firebaseUuid;
-    }
+    public String getFirebaseUuid() { return firebaseUuid; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
-    public String getRole() {
-        return role;
-    }
+    public String getRole() { return role; }
 
-    public String getFullName() {
-        return fullName;
-    }
+    public String getFullName() { return fullName; }
 }

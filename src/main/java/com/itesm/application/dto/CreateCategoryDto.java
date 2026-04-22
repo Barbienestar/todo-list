@@ -3,17 +3,19 @@ package com.itesm.application.dto;
 import jakarta.validation.constraints.NotBlank;
 
 /**
- * CreateTodoUseCase
+ * CreateCategoryDto
  */
-public class CreateTodoDto {
+public class CreateCategoryDto {
     @NotBlank(message = "Title is required") private String title;
-    @NotBlank(message = "Description is required") private String description;
+    private String description;
+    private String colorHex;
 
-    public CreateTodoDto() {}
+    public CreateCategoryDto() {}
 
-    public CreateTodoDto(String title, String description) {
+    public CreateCategoryDto(String title, String description, String colorHex) {
         this.title = title;
         this.description = description;
+        this.colorHex = colorHex;
     }
 
     public String getTitle() { return title; }
@@ -23,4 +25,8 @@ public class CreateTodoDto {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
+
+    public String getColorHex() { return colorHex; }
+
+    public void setColorHex(String colorHex) { this.colorHex = colorHex; }
 }

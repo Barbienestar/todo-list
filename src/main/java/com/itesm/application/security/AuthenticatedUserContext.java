@@ -9,11 +9,7 @@ import jakarta.enterprise.context.RequestScoped;
 public class AuthenticatedUserContext {
     private CurrentUser currentUser;
 
-    public CurrentUser getCurrentUser() {
-        return currentUser;
-    }
+    public CurrentUser getCurrentUser() { return currentUser; }
 
-    public void setCurrentUser(CurrentUser currentUser) {
-        this.currentUser = currentUser;
-    }
+    public void setCurrentUser(CurrentUser currentUser) { this.currentUser = currentUser; }
 }

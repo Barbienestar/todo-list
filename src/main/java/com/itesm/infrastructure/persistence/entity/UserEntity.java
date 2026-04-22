@@ -2,10 +2,7 @@ package com.itesm.infrastructure.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -25,8 +22,7 @@ public class UserEntity {
     @Column(name = "created_at") private LocalDateTime createdAt;
     @Column(name = "updated_at") private LocalDateTime updatedAt;
 
-    public UserEntity() {
-    }
+    public UserEntity() {}
 
     public UserEntity(
         UUID id, String fullName, String email, boolean active, String providerUid, String role) {
@@ -38,67 +34,35 @@ public class UserEntity {
         this.role = role;
     }
 
-    public UUID getId() {
-        return id;
-    }
+    public UUID getId() { return id; }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    public void setId(UUID id) { this.id = id; }
 
-    public String getFullName() {
-        return fullName;
-    }
+    public String getFullName() { return fullName; }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+    public void setFullName(String fullName) { this.fullName = fullName; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) { this.email = email; }
 
-    public boolean isActive() {
-        return active;
-    }
+    public boolean isActive() { return active; }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+    public void setActive(boolean active) { this.active = active; }
 
-    public String getProviderUid() {
-        return providerUid;
-    }
+    public String getProviderUid() { return providerUid; }
 
-    public void setProviderUid(String providerUid) {
-        this.providerUid = providerUid;
-    }
+    public void setProviderUid(String providerUid) { this.providerUid = providerUid; }
 
-    public String getRole() {
-        return role;
-    }
+    public String getRole() { return role; }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+    public void setRole(String role) { this.role = role; }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 }

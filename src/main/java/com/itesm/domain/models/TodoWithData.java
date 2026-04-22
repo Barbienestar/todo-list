@@ -10,8 +10,7 @@ public class TodoWithData extends Todo {
     private List<Comment> comments;
     private List<String> categories;
 
-    public TodoWithData() {
-    }
+    public TodoWithData() {}
 
     public TodoWithData(UUID id, String title, String description, boolean completed, UUID userId,
         List<Comment> comments, List<String> categories) {
@@ -20,19 +19,11 @@ public class TodoWithData extends Todo {
         this.categories = categories;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
+    public List<Comment> getComments() { return comments; }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
+    public void setComments(List<Comment> comments) { this.comments = comments; }
 
-    public List<String> getCategories() {
-        return categories;
-    }
+    public List<String> getCategories() { return categories; }
 
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
-    }
+    public void setCategories(List<String> categories) { this.categories = categories; }
 }

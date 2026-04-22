@@ -28,8 +28,7 @@ public class CommentEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    public CommentEntity() {
-    }
+    public CommentEntity() {}
 
     public CommentEntity(UUID id, String content, LocalDateTime createdAt, LocalDateTime updatedAt,
         TodoEntity todo, UserEntity user) {
@@ -41,51 +40,27 @@ public class CommentEntity {
         this.user = user;
     }
 
-    public UUID getId() {
-        return id;
-    }
+    public UUID getId() { return id; }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    public void setId(UUID id) { this.id = id; }
 
-    public String getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+    public void setContent(String content) { this.content = content; }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 
-    public TodoEntity getTodo() {
-        return todo;
-    }
+    public TodoEntity getTodo() { return todo; }
 
-    public void setTodo(TodoEntity todo) {
-        this.todo = todo;
-    }
+    public void setTodo(TodoEntity todo) { this.todo = todo; }
 
-    public UserEntity getUser() {
-        return user;
-    }
+    public UserEntity getUser() { return user; }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
+    public void setUser(UserEntity user) { this.user = user; }
 }
