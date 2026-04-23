@@ -17,7 +17,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 public class HealthResource {
     @ConfigProperty(name = "app.name", defaultValue = "todo-list") String appName;
 
-    @ConfigProperty(name = "app.version", defaultValue = "dev") String appVersion;
+    @ConfigProperty(name = "app.version", defaultValue = "0.0.3") String appVersion;
 
     @GET
     public Response status() {
