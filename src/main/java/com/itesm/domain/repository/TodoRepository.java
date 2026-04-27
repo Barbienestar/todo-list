@@ -10,7 +10,7 @@ import java.util.UUID;
  * TodoRepository
  */
 public interface TodoRepository {
-    public Todo save(Todo todo);
+    public Todo save(Todo todo, List<UUID> categoryIds);
     public void delete(UUID id);
     public Optional<Todo> find(UUID id);
     public List<TodoWithData> findByOwnerId(UUID ownerId);
