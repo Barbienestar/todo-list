@@ -1,8 +1,6 @@
 package com.itesm.domain.repository;
 
-/**
- * UserAuthService
- */
-public interface UserAuthService {
+/** UserAuthService */
+public interface UserTokenCreationService {
     String createUser(String email, String password);
 }
