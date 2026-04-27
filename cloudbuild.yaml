@@ -24,7 +24,7 @@ steps:
   - id: package
     name: maven:3.9-eclipse-temurin-21
     entrypoint: ./mvnw
-    args: ['-B', '-DskipTests', 'package']
+    args: ['-B', 'package']
 
   - id: build-and-push
     name: gcr.io/cloud-builders/docker

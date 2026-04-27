@@ -2,25 +2,26 @@ package com.itesm.application.usecase;
 
 import com.itesm.application.dto.CreateUserDto;
 import com.itesm.domain.models.User;
-import com.itesm.domain.repository.UserAuthService;
 import com.itesm.domain.repository.UserRepository;
+import com.itesm.domain.repository.UserTokenCreationService;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
+
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * CreateUserUseCase
- */
+/** CreateUserUseCase */
 @ApplicationScoped
 public class CreateUserUseCase {
     private final UserRepository userRepository;
-    private final UserAuthService userAuthService;
+    private final UserTokenCreationService userAuthService;
 
     @Inject
-    public CreateUserUseCase(UserRepository userRepository, UserAuthService userAuthService) {
+    public CreateUserUseCase(
+            UserRepository userRepository, UserTokenCreationService userAuthService) {
         this.userRepository = userRepository;
         this.userAuthService = userAuthService;
     }
@@ -37,7 +38,7 @@ public class CreateUserUseCase {
         user.setActive(true);
         user.setRole(createUserDto.getRole());
         String providerUid =
-            userAuthService.createUser(createUserDto.getEmail(), createUserDto.getPassword());
+                userAuthService.createUser(createUserDto.getEmail(), createUserDto.getPassword());
         user.setProviderUid(providerUid);
         return userRepository.save(user);
     }

@@ -17,7 +17,7 @@ import java.util.UUID;
  * CategoryEntity
  */
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 @NamedEntityGraph(name = "category.todos", attributeNodes = @NamedAttributeNode("todos"))
 public class CategoryEntity {
     @Id private UUID id;
@@ -27,7 +27,8 @@ public class CategoryEntity {
     @Column(name = "created_at") private LocalDateTime createdAt;
     @Column(name = "updated_at") private LocalDateTime updatedAt;
 
-    @ManyToMany(fetch = FetchType.LAZY) private Set<TodoEntity> todos = new HashSet<>();
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
+    private Set<TodoEntity> todos = new HashSet<>();
 
     public CategoryEntity() {}
 

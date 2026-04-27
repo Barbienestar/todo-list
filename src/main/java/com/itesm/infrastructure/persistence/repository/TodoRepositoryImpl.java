@@ -4,6 +4,7 @@ import com.itesm.domain.models.Todo;
 import com.itesm.domain.models.TodoWithData;
 import com.itesm.domain.repository.TodoRepository;
 import com.itesm.infrastructure.mapper.TodoMapper;
+import com.itesm.infrastructure.persistence.entity.CategoryEntity;
 import com.itesm.infrastructure.persistence.entity.TodoEntity;
 import com.itesm.infrastructure.persistence.entity.UserEntity;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
@@ -27,12 +28,20 @@ public class TodoRepositoryImpl implements TodoRepository, PanacheRepositoryBase
     @Inject EntityManager em;
     @Override
     @Transactional
-    public Todo save(Todo todo) {
+    public Todo save(Todo todo, List<UUID> categoryIds) {
         TodoEntity entity = TodoMapper.toEntity(todo);
         entity.setCreatedAt(LocalDateTime.now());
         entity.setUpdatedAt(LocalDateTime.now());
         if (todo.getUserId() != null) {
             entity.setOwner(getEntityManager().getReference(UserEntity.class, todo.getUserId()));
+        }
+        if (categoryIds != null && !categoryIds.isEmpty()) {
+            for (UUID categoryId : categoryIds) {
+                CategoryEntity categoryEntity = em.find(CategoryEntity.class, categoryId);
+                if (categoryEntity != null) {
+                    entity.getCategories().add(categoryEntity);
+                }
+            }
         }
         persist(entity);
         return TodoMapper.toDomain(entity);

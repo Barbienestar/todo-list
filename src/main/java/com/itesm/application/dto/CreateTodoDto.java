@@ -1,6 +1,7 @@
 package com.itesm.application.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import java.util.List;
 
 /**
  * CreateTodoUseCase
@@ -8,6 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 public class CreateTodoDto {
     @NotBlank(message = "Title is required") private String title;
     @NotBlank(message = "Description is required") private String description;
+    private List<String> categories;
 
     public CreateTodoDto() {}
 
@@ -23,4 +25,8 @@ public class CreateTodoDto {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
+
+    public List<String> getCategories() { return categories; }
+
+    public void setCategories(List<String> categories) { this.categories = categories; }
 }
