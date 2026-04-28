@@ -7,9 +7,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import java.util.List;
 
-/**
- * GetUserTodosUseCase
- */
 @ApplicationScoped
 public class GetUserTodosUseCase {
     private final TodoRepository todoRepository;

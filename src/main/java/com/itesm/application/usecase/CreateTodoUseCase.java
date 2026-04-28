@@ -8,9 +8,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import java.util.UUID;
 
-/**
- * CreateTodoUseCase
- */
 @ApplicationScoped
 public class CreateTodoUseCase {
     private final TodoRepository todoRepository;

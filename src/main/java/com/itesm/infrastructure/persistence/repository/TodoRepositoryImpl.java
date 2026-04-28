@@ -14,14 +14,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
-/**
- * TodoRepositoryImpl
- */
 @ApplicationScoped
 public class TodoRepositoryImpl implements TodoRepository, PanacheRepositoryBase<TodoEntity, UUID> {
     @Inject EntityManager em;
@@ -63,5 +60,32 @@ public class TodoRepositoryImpl implements TodoRepository, PanacheRepositoryBase
             .stream()
             .map(TodoMapper::toFullView)
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Todo> listTodos() {
+        List<TodoEntity> listEntities = listAll();
+        List<Todo> todos = new ArrayList<>();
+        for (TodoEntity todoEntity: listEntities) {
+            todos.add(TodoMapper.toDomain(todoEntity));
+        }
+        return todos;
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteTodo(UUID uuid) {
+        TodoEntity entity = find("id", uuid).firstResult();
+        if (entity == null) {
+            return false;
+        }
+        delete(entity);
+        return true;
+    }
+
+    @Override
+    public Todo findTodoById(UUID uuid){
+        TodoEntity entity = find("id", uuid).firstResult();
+        return TodoMapper.toDomain(entity);
     }
 }
