@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * TodoRepository
- */
 public interface TodoRepository {
     public Todo save(Todo todo, List<UUID> categoryIds);
     public void delete(UUID id);
     public Optional<Todo> find(UUID id);
     public List<TodoWithData> findByOwnerId(UUID ownerId);
+    List<Todo> listTodos();
+    boolean deleteTodo(UUID uuid);
+    Todo findTodoById(UUID uuid);
 }

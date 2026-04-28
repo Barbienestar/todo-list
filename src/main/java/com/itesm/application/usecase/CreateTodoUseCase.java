@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * CreateTodoUseCase
- */
 @ApplicationScoped
 public class CreateTodoUseCase {
     private final TodoRepository todoRepository;
